@@ -1,0 +1,30 @@
+#include "binary_trees.h"
+
+/**
+ * is_bst - Helper for valid Binary Search Tree check
+ * @tree: Pointer to the root node of the tree to check
+ * @min: Lowest range value to check
+ * @max: Largest range value to check
+ * Return: 1 if true else 0
+ */
+int is_bst(const binary_tree_t *tree, int min, int max)
+{
+	if (tree == NULL)
+		return (1);
+	if (tree->n >= max || tree->n <= min)
+		return (0);
+	return (is_bst(tree->left, min, tree->n) &&
+	is_bst(tree->right, tree->n, max));
+}
+
+/**
+ * binary_tree_is_bst -  Checks if a binary tree is a valid Binary Search Tree
+ * @tree: Pointer to the root node of the tree to check
+ * Return: 1 if true else 0
+ */
+int binary_tree_is_bst(const binary_tree_t *tree)
+{
+	if (tree == NULL)
+		return (0);
+	return (is_bst(tree, INT_MIN, INT_MAX));
+}
